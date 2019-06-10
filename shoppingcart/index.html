@@ -1,91 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shoppingcart</title>
+  <base href="/">
 
-<div id = background>
-  
-  <div style = "text-align: center">
-    <h1 class = "myfont" >
-      Welcome to PaPa John's <br/>{{ title }}!
-    </h1>
-  </div>
-  
-
-  <form class = "myForm">
-    <div class = "form-group">
-      <label for="firstName"></label>
-      <p class = "orderfont">First Name</p>
-      <input id="firstName" for="firstName" type='text' class="form-control" required>
-    </div>
-    <div class = "form-group">
-      <label for="lastName"></label>
-      <p class = "orderfont">Last Name</p>
-      <input id="lastName" for="lastName" type='text' class="form-control" required>
-    </div>
-    <div class = "form-group">
-      <label for="Address"></label>
-      <p class = "orderfont">Address</p>
-      <input id="Address" for="Address" type='text' class="form-control">
-    </div>
-    <!--<button class="btn btn-primary">Submit Address!</button>-->
-  </form>
-  
-<div class = "dropdown">
-  <form #f="ngForm" (ngSubmit)="addItem(f)" id = "katana_form" style="border-block-color: rgb(217, 0, 255)">
-      <select name = "katana" ngModel>
-        <option value = "0">Please select an item</option>
-        <!--[VALUE] square brackets makes it complete the value dynamically-->
-        <option *ngFor = "let item of items" [ngValue] ="item">{{item.item}}</option>
-      </select>
-      <label for="quantity"> Qty</label>
-        <input  type ="number" name ="quantity" id="quantity" min="0" max="20" oninput="getTotal_1()" ngModel>
-        <span id = "sideView" class = "subtotal"></span>         
-    
-    <button class="btn btn-primary" id = 'addItem'>Add items</button>
-  
-  </form>
-</div>
-<br>
-<br>
-<br>
-<h4 style="text-align:center" class = "orderfont">Order Details</h4>
-  <div class = "table-responsive-md" id = "katana_cart">
-    <table>
-      <tr class = "orderfont">
-          <th width = "20%" >Pizza(s)</th>
-          <th width = "10%">Qty</th>
-          <th width = "10%">Price</th>
-          <th width = "10%">SubTotal</th>
-      </tr>
-      <tr *ngFor="let order of orders; let i = index" class = "orderfont">
-        <th>{{i+1}} {{ order.item }}</th>
-        <th>  {{ order.qty }}</th>
-        <th>{{ order.price}}</th>
-        <th>{{ order.subtotal}}</th>
-        <th><button (click)=removeItem(i) class="btn btn-danger">Remove</button></th>
-      </tr>
-      &nbsp;
-      <tr class = "orderfont">
-          <td>Total:</td>
-          <td></td>
-          <td></td>
-          <th>${{total}}</th>
-      </tr>
-      <tr class = "orderfont"> 
-          <td>Taxes:</td>
-          <td></td>
-          <td></td>
-          <td>${{taxes}}</td>
-      </tr>
-      <tr class = "orderfont">
-          <td>Grand Total:</td>
-          <td></td>
-          <td></td>
-          <td>${{grandTotal}}</td>
-      </tr>
-    </table>
-    &nbsp;
-    <div><button (click)=submitOrder() class="btn btn-primary">Submit Order!</button></div>
-  </div>
- 
-
-</div>
-
-<router-outlet></router-outlet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
