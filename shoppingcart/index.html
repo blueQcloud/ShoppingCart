@@ -1,13 +1,91 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Shoppingcart</title>
-  <base href="http://blueQcloud.github.io/ShoppingCart/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="styles.993209bba4f2695bdda8.css"></head>
-<body>
-  <app-root></app-root>
-<script src="runtime-es2015.858f8dd898b75fe86926.js" type="module"></script><script src="polyfills-es2015.edf60e92366a5a261979.js" type="module"></script><script src="runtime-es5.741402d1d47331ce975c.js" nomodule></script><script src="polyfills-es5.943113ac054b16d954ae.js" nomodule></script><script src="main-es2015.51e18b96cd4081d7549f.js" type="module"></script><script src="main-es5.e68c8ee2c5f100478f56.js" nomodule></script></body>
-</html>
+
+<div id = background>
+  
+  <div style = "text-align: center">
+    <h1 class = "myfont" >
+      Welcome to PaPa John's <br/>{{ title }}!
+    </h1>
+  </div>
+  
+
+  <form class = "myForm">
+    <div class = "form-group">
+      <label for="firstName"></label>
+      <p class = "orderfont">First Name</p>
+      <input id="firstName" for="firstName" type='text' class="form-control" required>
+    </div>
+    <div class = "form-group">
+      <label for="lastName"></label>
+      <p class = "orderfont">Last Name</p>
+      <input id="lastName" for="lastName" type='text' class="form-control" required>
+    </div>
+    <div class = "form-group">
+      <label for="Address"></label>
+      <p class = "orderfont">Address</p>
+      <input id="Address" for="Address" type='text' class="form-control">
+    </div>
+    <!--<button class="btn btn-primary">Submit Address!</button>-->
+  </form>
+  
+<div class = "dropdown">
+  <form #f="ngForm" (ngSubmit)="addItem(f)" id = "katana_form" style="border-block-color: rgb(217, 0, 255)">
+      <select name = "katana" ngModel>
+        <option value = "0">Please select an item</option>
+        <!--[VALUE] square brackets makes it complete the value dynamically-->
+        <option *ngFor = "let item of items" [ngValue] ="item">{{item.item}}</option>
+      </select>
+      <label for="quantity"> Qty</label>
+        <input  type ="number" name ="quantity" id="quantity" min="0" max="20" oninput="getTotal_1()" ngModel>
+        <span id = "sideView" class = "subtotal"></span>         
+    
+    <button class="btn btn-primary" id = 'addItem'>Add items</button>
+  
+  </form>
+</div>
+<br>
+<br>
+<br>
+<h4 style="text-align:center" class = "orderfont">Order Details</h4>
+  <div class = "table-responsive-md" id = "katana_cart">
+    <table>
+      <tr class = "orderfont">
+          <th width = "20%" >Pizza(s)</th>
+          <th width = "10%">Qty</th>
+          <th width = "10%">Price</th>
+          <th width = "10%">SubTotal</th>
+      </tr>
+      <tr *ngFor="let order of orders; let i = index" class = "orderfont">
+        <th>{{i+1}} {{ order.item }}</th>
+        <th>  {{ order.qty }}</th>
+        <th>{{ order.price}}</th>
+        <th>{{ order.subtotal}}</th>
+        <th><button (click)=removeItem(i) class="btn btn-danger">Remove</button></th>
+      </tr>
+      &nbsp;
+      <tr class = "orderfont">
+          <td>Total:</td>
+          <td></td>
+          <td></td>
+          <th>${{total}}</th>
+      </tr>
+      <tr class = "orderfont"> 
+          <td>Taxes:</td>
+          <td></td>
+          <td></td>
+          <td>${{taxes}}</td>
+      </tr>
+      <tr class = "orderfont">
+          <td>Grand Total:</td>
+          <td></td>
+          <td></td>
+          <td>${{grandTotal}}</td>
+      </tr>
+    </table>
+    &nbsp;
+    <div><button (click)=submitOrder() class="btn btn-primary">Submit Order!</button></div>
+  </div>
+ 
+
+</div>
+
+<router-outlet></router-outlet>
